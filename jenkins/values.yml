@@ -1,5 +1,5 @@
 controller:
-  adminUser: "admin
+  adminUser: "admin"
   adminPassword: "admin"
   nodeSelector: 
     nodetype: monitoring
