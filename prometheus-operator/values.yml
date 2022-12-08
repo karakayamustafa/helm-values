@@ -1,0 +1,81 @@
+kube-state-metrics:
+  tolerations:
+    - key: "nodetype"
+      operator: "Equal"
+      value: "monitoring"
+  nodeSelector:
+    nodetype: monitoring
+  selfMonitor:
+    enabled: true
+  prometheus:
+    monitor:
+      enabled: true
+
+  prometheus:
+    monitor:
+      enabled: true
+  tolerations:
+    - key: "nodetype"
+      operator: "Equal"
+      value: "monitoring"
+
+prometheusOperator:
+  enabled: true
+  admissionWebhooks:
+    enabled: true
+  kubeletService:
+    enabled: true
+    namespace: kube-system
+  serviceMonitor:
+    selfMonitor: true
+  resources:
+    limits:
+      cpu: 200m
+      memory: 400Mi
+    requests:
+      cpu: 100m
+      memory: 100Mi
+
+  nodeSelector:
+    nodetype: monitoring
+
+  tolerations:
+    - key: "nodetype"
+      operator: "Equal"
+      value: "monitoring"
+
+prometheus:
+  enabled: true
+
+  prometheusSpec:
+    tolerations:
+      - key: "nodetype"
+        operator: "Equal"
+        value: "monitoring"
+
+    nodeSelector:
+      nodetype: monitoring
+
+
+    resources:
+      requests:
+        memory: 400Mi
+
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          volumeName: prometheus
+          accessModes: ["ReadWriteOnce"]
+          storageClassName: prometheus
+          resources:
+            requests:
+              storage: 10Gi
+
+              
+
+volumeClaimTemplate:
+  accessModes: ["ReadWriteOnce"]
+  storageClassName: es
+  resources:
+    requests:
+      storage: 30Gi

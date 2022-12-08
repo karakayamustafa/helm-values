@@ -1,0 +1,15 @@
+controller:
+  adminUser: "admin
+  adminPassword: "admin"
+  nodeSelector: 
+    nodetype: monitoring
+  tolerations:
+   - key: "nodetype"
+     operator: "Equal"
+     value: "jenkins"
+     effect: "NoSchedule"
+persistence:
+  enabled: true
+  storageClass: jenkins
+  accessMode: "ReadWriteOnce"
+  size: "8Gi"
